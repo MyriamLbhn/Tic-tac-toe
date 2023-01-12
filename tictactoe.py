@@ -2,15 +2,18 @@
 grille = []
 for i in range(3):
     grille.append([0 for j in range(3)])
-for line in grille:
-    print(line)
+    
+# Fonction pour aficher la grille :
+def afficher_grille(grille):
+    for line in grille:
+        print(line)
  
-# Fonction pour vérifier si le coup est possible
+# Fonction pour choisir où jouer
 def choisir_case(ligne, col, joueur):
     grille[ligne][col] = joueur
     
 
-# Fonction pour vérifier si le joueur à gagné
+# Fonction pour vérifier si un joueur a gagné
 def victoire_jeu(grille, joueur):
     # Lignes
     for i in range(3):
@@ -47,3 +50,4 @@ def victoire_jeu(grille, joueur):
         if victoire:
             return victoire
     
+print(afficher_grille(grille))
