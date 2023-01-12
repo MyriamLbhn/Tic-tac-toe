@@ -8,11 +8,10 @@ def afficher_grille(grille):
     for line in grille:
         print(line)
  
-# Fonction pour choisir où jouer
+# Fonction pour choisir où jouer :
 def choisir_case(ligne, col, joueur):
     grille[ligne][col] = joueur
     
-
 # Fonction pour vérifier si un joueur a gagné
 def victoire_jeu(grille, joueur):
     # Lignes
@@ -50,4 +49,12 @@ def victoire_jeu(grille, joueur):
         if victoire:
             return victoire
     
-print(afficher_grille(grille))
+# Fonction pour vérifier si le coup est possible 
+def coup_possible(ligne, col, joueur):
+    possible = False
+    if grile[ligne][col]==0:
+        possible = True
+        return possible
+
+        
+        
