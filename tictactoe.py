@@ -15,50 +15,68 @@ def choisir_case():
     col = eval(input("c= "))
     return(ligne, col)
     
-# Fonction pour vérifier si un joueur a gagné
-def victoire_jeu():
+# Fonction pour vérifier si un joueur a gagné :
+def est_gagnee(grille, joueur):
+    # victoire = None
+    # # Lignes
+    # for i in range(3):
+    #     victoire = True
+    #     for j in range(3):
+    #         if grille[i][j] != joueur:
+    #             victoire = False
+    #             break
+    #     if victoire:
+    #         return victoire
+    # # Colonnes
+    # for i in range(3):
+    #     victoire = True
+    #     for j in range(3):
+    #         if grille[j][i] != joueur:
+    #             victoire = False
+    #             break
+    #     if victoire:
+    #         return victoire
+    # # Diagonale 1
+    # for i in range(3):
+    #     victoire = True
+    #     if grille[i][2-i] != joueur:
+    #         victoire = False
+    #         break
+    #     if victoire:
+    #         return victoire
+    # # Diagonale 2
+    # for i in range(3):
+    #     victoire = True
+    #     if grille[i][i] != joueur:
+    #         victoire = False
+    #         break
+    #     if victoire:
+    #         return victoire
+
     # Lignes
+    for ligne in grille:
+        if ligne[0]==ligne[1]==ligne[2]==joueur:
+            return True
+    # Colonne
     for i in range(3):
-        victoire = True
-        for j in range(3):
-            if grille[i][j] != joueur:
-                victoire = False
-                break
-        if victoire:
-            return victoire
-    # Colonnes
-    for i in range(3):
-        victoire = True
-        for j in range(3):
-            if grille[j][i] != joueur:
-                victoire = False
-                break
-        if victoire:
-            return victoire
+        if grille[0][i]==grille[1][i]==grille[2][i]==joueur:
+            return True
     # Diagonale 1
     for i in range(3):
-        victoire = True
-        if grille[i][2-i] != joueur:
-            victoire = False
-            break
-        if victoire:
-            return victoire
+        if grille[0][0]==grille[1][1]==grille[2][2]==joueur:
+            return True
     # Diagonale 2
     for i in range(3):
-        victoire = True
-        if grille[i][i] != joueur:
-            victoire = False
-            break
-        if victoire:
-            return victoire
+        if grille[0][2]==grille[1][1]==grille[2][0]== joueur:
+            return True
+    return False
     
 # Fonction pour vérifier si le coup est possible 
 def coup_possible(ligne,col):
     possible = None
-    if ligne not in (1,2,3) and col not in (1,2,3):
-        possible = False
-    if grille[ligne-1][col-1]==0:
-        possible = True
+    if ligne in (1,2,3) and col in (1,2,3):
+        if grille[ligne-1][col-1]==0:
+            possible = True
     return possible
      
 # Jeu
@@ -72,9 +90,9 @@ while True:
         grille[ligne-1][col-1]= joueur
         afficher_grille(grille)
     else:
-        print("Vous devez choisir une cade vide existante !")
-    if victoire_jeu():
-        print(victoire_jeu())
+        print("Vous devez choisir une case vide existante !")
+    if est_gagnee(grille, joueur):
+        print(est_gagnee(grille, joueur))
         print("Victoire")
         break
     
