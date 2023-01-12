@@ -17,42 +17,6 @@ def choisir_case():
     
 # Fonction pour vérifier si un joueur a gagné :
 def est_gagnee(grille, joueur):
-    # victoire = None
-    # # Lignes
-    # for i in range(3):
-    #     victoire = True
-    #     for j in range(3):
-    #         if grille[i][j] != joueur:
-    #             victoire = False
-    #             break
-    #     if victoire:
-    #         return victoire
-    # # Colonnes
-    # for i in range(3):
-    #     victoire = True
-    #     for j in range(3):
-    #         if grille[j][i] != joueur:
-    #             victoire = False
-    #             break
-    #     if victoire:
-    #         return victoire
-    # # Diagonale 1
-    # for i in range(3):
-    #     victoire = True
-    #     if grille[i][2-i] != joueur:
-    #         victoire = False
-    #         break
-    #     if victoire:
-    #         return victoire
-    # # Diagonale 2
-    # for i in range(3):
-    #     victoire = True
-    #     if grille[i][i] != joueur:
-    #         victoire = False
-    #         break
-    #     if victoire:
-    #         return victoire
-
     # Lignes
     for ligne in grille:
         if ligne[0]==ligne[1]==ligne[2]==joueur:
@@ -81,20 +45,27 @@ def coup_possible(ligne,col):
      
 # Jeu
 afficher_grille(grille)
-
-joueur = 1
-print("JOUEUR "+str(joueur))
-while True:    
-    ligne, col=choisir_case()
-    if coup_possible(ligne, col):
-        grille[ligne-1][col-1]= joueur
-        afficher_grille(grille)
+tour=0
+joueur = 0
+while tour <= 10: 
+    tour+=1
+    if tour%2!=0:
+        joueur = 1
     else:
-        print("Vous devez choisir une case vide existante !")
+        joueur = 2
+    print("JOUEUR "+str(joueur))
     if est_gagnee(grille, joueur):
-        print(est_gagnee(grille, joueur))
         print("Victoire")
-        break
+        break  
+    ligne, col=choisir_case()
+    while not coup_possible(ligne, col):
+        print("Vous devez choisir une case vide existante !")
+        ligne, col=choisir_case()
+        afficher_grille(grille)
+    grille[ligne-1][col-1]= joueur
+    afficher_grille(grille)
+        
+
     
     
         
