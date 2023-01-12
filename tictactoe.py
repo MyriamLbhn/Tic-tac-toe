@@ -9,11 +9,14 @@ def afficher_grille(grille):
         print(line)
  
 # Fonction pour choisir où jouer :
-def choisir_case(ligne, col, joueur):
-    grille[ligne][col] = joueur
+def choisir_case():
+    print("Choissisez la ligne puis la colonne sur laquelle vous souhaitez jouer")    
+    ligne = eval(input("l= "))
+    col = eval(input("c= "))
+    return(ligne, col)
     
 # Fonction pour vérifier si un joueur a gagné
-def victoire_jeu(grille, joueur):
+def victoire_jeu():
     # Lignes
     for i in range(3):
         victoire = True
@@ -50,11 +53,31 @@ def victoire_jeu(grille, joueur):
             return victoire
     
 # Fonction pour vérifier si le coup est possible 
-def coup_possible(ligne, col, joueur):
-    possible = False
-    if grile[ligne][col]==0:
+def coup_possible(ligne,col):
+    possible = None
+    if ligne not in (1,2,3) and col not in (1,2,3):
+        possible = False
+    if grille[ligne-1][col-1]==0:
         possible = True
-        return possible
+    return possible
+     
+# Jeu
+afficher_grille(grille)
 
+joueur = 1
+print("JOUEUR "+str(joueur))
+while True:    
+    ligne, col=choisir_case()
+    if coup_possible(ligne, col):
+        grille[ligne-1][col-1]= joueur
+        afficher_grille(grille)
+    else:
+        print("Vous devez choisir une cade vide existante !")
+    if victoire_jeu():
+        print(victoire_jeu())
+        print("Victoire")
+        break
+    
+    
         
         
