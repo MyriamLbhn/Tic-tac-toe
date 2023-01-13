@@ -26,13 +26,11 @@ def est_gagnee(grille, joueur):
         if grille[0][i]==grille[1][i]==grille[2][i]==joueur:
             return True
     # Diagonale 1
-    for i in range(3):
-        if grille[0][0]==grille[1][1]==grille[2][2]==joueur:
-            return True
+    if grille[0][0]==grille[1][1]==grille[2][2]==joueur:
+        return True
     # Diagonale 2
-    for i in range(3):
-        if grille[0][2]==grille[1][1]==grille[2][0]== joueur:
-            return True
+    if grille[0][2]==grille[1][1]==grille[2][0]== joueur:
+         return True
     return False
     
 # Fonction pour vérifier si le coup est possible 
@@ -47,16 +45,16 @@ def coup_possible(ligne,col):
 afficher_grille(grille)
 tour=0
 joueur = 0
-while tour <= 10: 
+while True:
     tour+=1
+    if tour>9:
+        break
     if tour%2!=0:
         joueur = 1
     else:
         joueur = 2
-    print("JOUEUR "+str(joueur))
-    if est_gagnee(grille, joueur):
-        print("Victoire")
-        break  
+    print(tour)
+    print("JOUEUR "+str(joueur))  
     ligne, col=choisir_case()
     while not coup_possible(ligne, col):
         print("Vous devez choisir une case vide existante !")
@@ -64,6 +62,10 @@ while tour <= 10:
         afficher_grille(grille)
     grille[ligne-1][col-1]= joueur
     afficher_grille(grille)
+    if est_gagnee(grille, joueur):
+        print("Victoire du Joueur "+ str(joueur))
+        break
+print("Fin de la partie, égalité !")
         
 
     
