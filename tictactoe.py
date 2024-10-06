@@ -79,12 +79,13 @@ joueur = 0
 while True:
     tour+=1
     if tour>9:
-        break
+        print("Fin de la partie, égalité !")
+        break 
     if tour%2!=0:
         joueur = 1
     else:
         joueur = 2
-    print(tour)
+    #print(tour)
     print("JOUEUR "+str(joueur))  
     ligne, col=choisir_case()
     while not coup_possible(ligne, col):
@@ -96,7 +97,7 @@ while True:
     if est_gagnee(grille, joueur):
         print("Victoire du Joueur "+ str(joueur))
         break
-print("Fin de la partie, égalité !")
+
         
 
     
